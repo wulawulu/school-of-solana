@@ -15,7 +15,7 @@ describe("no-prior-credit", () => {
 
   before("prepare", async () => {
     // Fund the user's account with SOL to cover transaction cost.
-    // await airdrop(connection, user.publicKey);
+    await airdrop(connection, user.publicKey);
 
     // Retrieve and log the user's account balance with `getBalance`.
     console.log(

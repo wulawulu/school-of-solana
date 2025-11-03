@@ -25,8 +25,8 @@ describe("signature-verification-failed", () => {
         data: data.publicKey,
         systemProgram: SystemProgram.programId,
       })
-      .signers([user]) // Missing signer.
-      // .signers([user, data]) // Include data as an additional signer.
+      // .signers([user]) // Missing signer.
+      .signers([user, data]) // Include data as an additional signer.
       .rpc();
 
     console.log("Your transaction signature", tx);

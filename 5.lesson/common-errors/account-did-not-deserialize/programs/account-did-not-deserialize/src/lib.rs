@@ -28,7 +28,7 @@ pub struct Initialize<'info> {
     #[account(init,
         // Adjust space calculation to fix the test.
         // Add 8 bytes for the account discriminator.
-        space = 32 + 1,
+        space = 8 + 32 + 1,
         payer = user,
     )]
     data: Account<'info, MyData>,

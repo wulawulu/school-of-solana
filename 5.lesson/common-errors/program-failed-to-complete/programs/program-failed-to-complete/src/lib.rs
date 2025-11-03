@@ -10,7 +10,7 @@ pub mod program_failed_to_complete {
         let data = &mut ctx.accounts.data;
 
         // Prevent underflow by checking that `count` does not exceed 10.
-        // require!(count <= 10, MyError::InvalidInstructionData);
+        require!(count <= 10, MyError::InvalidInstructionData);
 
         data.authority = ctx.accounts.user.key();
         data.counter = 10 - count;
@@ -46,8 +46,8 @@ pub struct MyData {
 }
 
 // Add custom error for clearer error messages.
-// #[error_code]
-// pub enum MyError {
-//     #[msg("Invalid instruction data")]
-//     InvalidInstructionData,
-// }
+#[error_code]
+pub enum MyError {
+    #[msg("Invalid instruction data")]
+    InvalidInstructionData,
+}

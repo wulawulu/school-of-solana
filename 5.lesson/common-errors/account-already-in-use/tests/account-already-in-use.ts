@@ -11,6 +11,7 @@ describe("account-already-in-use", () => {
     .AccountAlreadyInUse as Program<AccountAlreadyInUse>;
   const user = Keypair.generate();
   const data = Keypair.generate();
+  const data2 = Keypair.generate();
 
   before("prepare", async () => {
     await airdrop(connection, user.publicKey);
@@ -30,8 +31,8 @@ describe("account-already-in-use", () => {
     console.log("Your transaction signature", tx);
 
     // Log public keys for debugging.
-    // console.log("Data account pubkey: ", data.publicKey.toString());
-    // console.log("User account pubkey: ", user.publicKey.toString());
+    console.log("Data account pubkey: ", data.publicKey.toString());
+    console.log("User account pubkey: ", user.publicKey.toString());
 
     // Attempting to initialize the data account twice.
     // To fix the test, comment out the transaction and log below.
@@ -39,10 +40,10 @@ describe("account-already-in-use", () => {
       .initialize()
       .accountsStrict({
         user: user.publicKey,
-        data: data.publicKey,
+        data: data2.publicKey,
         systemProgram: SystemProgram.programId,
       })
-      .signers([user, data])
+      .signers([user, data2])
       .rpc();
 
     console.log("Your transaction signature", repeat_tx);
